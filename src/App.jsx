@@ -5,6 +5,9 @@ import Scoreboard from './components/Scoreboard/Scoreboard';
 import CardGrid from './components/CardGrid/CardGrid';
 import { getPokemonData } from './hooks/usePokemonData';
 import { shuffleArray } from './utils/shuffle';
+import GameOverModal from './components/GameOverModal/GameOverModal';
+
+const TOTAL_CARDS = 9;
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -41,13 +44,21 @@ function App() {
     }
   };
 
+  const resetGame = () => {
+    setScore(0);
+    setClickedCard([]);
+    setGameOver(false);
+    setWin(false);
+    setCards(shuffleArray(cards));
+  };
+
   return (
     <>
     <div className="App nes-container with-title is-centered mt-4">
       <p className="title">Memory Card Game</p>
       <Scoreboard score={score} bestScore={bestScore} />
       <CardGrid cards={cards} onCardClick={handleCardClick} />
-      {/* {gameOver && <GameOverModal win={win} onClose={resetGame} />} */}
+      {gameOver && <GameOverModal win={win} onClose={resetGame} />}
     </div>
     </>
   )
