@@ -1,34 +1,51 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
 import 'nes.css/css/nes.min.css';
+import Scoreboard from './components/Scoreboard/Scoreboard';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [cards, setCards] = useState([]);
+  const [clickedCard, setClickedCard] = useState([]);
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const [win, setWin] = useState(false);
+
+  useEffect(() => {
+    getPokemonData(TOTAL_CARDS).then(data => setCards(shuffleArray(data)));
+  }, []);
+
+  const handleCardClick = (id) => {
+    if (clickedCard.includes(id)) {
+      setGameOver(true);
+      setWin(false);
+      setClickedCard([]);
+      setScore(0);
+    }
+    else {
+      const newScore = score + 1;
+      const newClicked = [...clickedCard, id];
+      setClickedCard(newClicked);
+      setScore(newScore);
+      setBestScore(prev => Math.max(prev, newScore));
+
+      if(newScore === TOTAL_CARDS) {
+        setGameOver(true);
+        setWin(true);
+      } else {
+        setCards(shuffleArray(cards));
+      }
+    }
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className="App nes-container with-title is-centered mt-4">
+      <p className="title">Memory Card Game</p>
+      <Scoreboard score={score} bestScore={bestScore} />
+      {/* <CardGrid cards={cards} onCardClick={handleCardClick} /> */}
+      {/* {gameOver && <GameOverModal win={win} onClose={resetGame} />} */}
+    </div>
     </>
   )
 }
