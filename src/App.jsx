@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import 'nes.css/css/nes.min.css';
 import Scoreboard from './components/Scoreboard/Scoreboard';
+import CardGrid from './components/CardGrid/CardGrid';
+import { getPokemonData } from './hooks/usePokemonData';
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -43,7 +45,7 @@ function App() {
     <div className="App nes-container with-title is-centered mt-4">
       <p className="title">Memory Card Game</p>
       <Scoreboard score={score} bestScore={bestScore} />
-      {/* <CardGrid cards={cards} onCardClick={handleCardClick} /> */}
+      <CardGrid cards={cards} onCardClick={handleCardClick} />
       {/* {gameOver && <GameOverModal win={win} onClose={resetGame} />} */}
     </div>
     </>
