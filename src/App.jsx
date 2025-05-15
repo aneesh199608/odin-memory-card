@@ -4,6 +4,7 @@ import 'nes.css/css/nes.min.css';
 import Scoreboard from './components/Scoreboard/Scoreboard';
 import CardGrid from './components/CardGrid/CardGrid';
 import { getPokemonData } from './hooks/usePokemonData';
+import { shuffleArray } from './utils/shuffle';
 
 function App() {
   const [cards, setCards] = useState([]);
