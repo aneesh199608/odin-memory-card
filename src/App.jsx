@@ -54,8 +54,8 @@ function App() {
 
   return (
     <>
-    <div className="App nes-container with-title is-centered mt-4">
-      <p className="title">Memory Card Game</p>
+    <div className="App">
+      <span className="nes-text title-header">Memory Card Game</span>
       <Scoreboard score={score} bestScore={bestScore} />
       <CardGrid cards={cards} onCardClick={handleCardClick} />
       {gameOver && <GameOverModal win={win} onClose={resetGame} />}

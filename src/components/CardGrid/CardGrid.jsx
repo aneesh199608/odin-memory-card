@@ -3,7 +3,7 @@ import './CardGrid.css';
 
 function CardGrid({ cards, onCardClick }) {
   return (
-    <div className="card-grid nes-container is-rounded">
+    <div className="card-grid">
       <div className="grid">
         {cards.map((card) => (
           <Card
