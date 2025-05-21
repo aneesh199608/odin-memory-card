@@ -1,0 +1,19 @@
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* overlay effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+  }
+  
+  .modal-overlay {
+    background: white;
+    padding: 2rem;
+    z-index: 100;
+  }
+  

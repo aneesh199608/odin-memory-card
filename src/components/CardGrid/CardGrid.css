@@ -15,8 +15,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1rem 0.5rem;
   background-color: #E4F7FF;
+  padding: 0;
 }
 
 .card > img{
